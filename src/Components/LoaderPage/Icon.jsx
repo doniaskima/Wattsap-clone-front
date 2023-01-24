@@ -1,9 +1,11 @@
 import React from 'react'
+import Icons from "./icons";
 
-const Icon = () => {
-  return (
-    <div>Icon</div>
-  )
-}
+const allIcons = Icons;
 
-export default Icon
+const Icon = ({ id, ...props }) => {
+    const selectedIcon = allIcons[id];
+    return selectedIcon ? selectedIcon(props) : null;
+};
+
+export default Icon;
