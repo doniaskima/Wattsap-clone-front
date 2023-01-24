@@ -1,9 +1,9 @@
-import './App.css'
+import LoaderPage from "./Pages/LoaderPage";
 
 function App() {
   return (
     <div className="App">
-      heeeeyyyyyyyyyyy
+      <LoaderPage />
     </div>
   )
 }
