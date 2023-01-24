@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+
 
 const LoaderPage = () => {
     return (
         <div className="loaderPage">
             <div className="logoWrapper">
-                
+
             </div>
         </div>
     )
