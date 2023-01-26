@@ -13,7 +13,7 @@ const LoaderPage = ({ done }) => {
                 <h1 className="loader__title"> Whatsapp</h1>
                 <p className="loader__desc">
                     <Icon id="lock" className="loader__icon" />
-                    End-to-end encrypted.
+                    End-to-end encrypted.built by Donia Skima
                 </p>
             </div>
     );

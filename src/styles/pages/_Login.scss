@@ -1,1 +1,16 @@
- 
+@import "../../Variables/Colors.scss";
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    .form-style {
+        width: 600px;
+        background-color: $greenWattsap;
+        padding: 45px 35px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin: auto;
+    }
+}
