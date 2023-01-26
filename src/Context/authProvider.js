@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
-import BaseUrl from "../utils/api";
-import { useNavigate } from "react-router-dom";
-
+import { BaseUrl } from "../utils/api";
+import { useNavigate } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const navigate = useNavigate();
     const [user, setUser] = useState(JSON.parse(localStorage?.getItem("user")));
     const [token, setToken] = useState(
         JSON.parse(localStorage?.getItem("token"))
@@ -81,12 +79,12 @@ export const AuthProvider = ({ children }) => {
                 emailValidate,
                 signupWithUserCredentials,
                 logout,
-                setUser,
-            }}
+                setUser
+        }}
         >
             {children}
-        </AuthContext.Provider>
-    );
+       </AuthContext.Provider>
+   )
 };
 
 export const useAuth = () => useContext(AuthContext);
