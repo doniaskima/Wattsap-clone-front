@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
-import { BaseUrl } from "../utils/api";
-import { useNavigate } from "react";
+import { baseUrl } from "../utils/api";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(JSON.parse(localStorage?.getItem("user")));
     const [token, setToken] = useState(
         JSON.parse(localStorage?.getItem("token"))
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     async function loginWithUserCredentials(email, password) {
         const {
             data: { message, user, token, status },
-        } = await axios.post(`${BASE_URL}/users/login`, {
+        } = await axios.post(`${baseUrl}/users/login`, {
             email: email,
             password: password,
         });
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     async function signupWithUserCredentials(name, email, password) {
         const {
             data: { message, user, token, status },
-        } = await axios.post(`${BASE_URL}/users/signup`, {
+        } = await axios.post(`${baseUrl}/users/signup`, {
             name: name,
             email: email,
             password: password,
@@ -79,12 +81,12 @@ export const AuthProvider = ({ children }) => {
                 emailValidate,
                 signupWithUserCredentials,
                 logout,
-                setUser
-        }}
+                setUser,
+            }}
         >
             {children}
-       </AuthContext.Provider>
-   )
+        </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => useContext(AuthContext);

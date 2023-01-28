@@ -1,18 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 import Logo from "../assets/Whatsapp-logo.png";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/authProvider";
 
 const Signup = () => {
+    const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const isPasswordValid = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(
+        password
+    );
+    const matchPassword = confirmPassword === password && confirmPassword !== "";
+    const isEmptyFields =
+        !email.trim().length || !password.trim().length || !name.trim().length;
+
+
+    const signupHandler = async (event) => {
+        event.preventDefault();
+        if (emailValidate(email)) {
+            if (isPasswordValid) {
+                if (matchPassword) {
+                    setLoading(true);
+                    const { user, message } = await signupWithUserCredentials(
+                        name,
+                        email,
+                        password
+                    );
+                    if (user !== null) {
+                        navigate("home", { replace: true });
+                        return;
+                    }
+                    setError(message);
+                    return;
+                }
+                setError("Both passwords must be same");
+                return;
+            }
+            setError(
+                "Password must be 8 characters long, have one upper and lower case character and one number."
+            );
+            return;
+        }
+        setError("Enter Valid Email");
+    };
+
     return (
         <div className="form-container-signup">
             <div className="logo-wattsap">
                 <img src={Logo} alt="wattsap-logo" className="wattsap-logo" />
             </div>
-            <form className="form-style">
+            <form onSubmit={(event) => signupHandler(event)} className="form-style">
                 <FormTitle>
                     Join Wattsap Today
                 </FormTitle>
+                {error !== "" &&
+                    <p className="error-style">{error}</p>
+                }
                 <InputContainer>
                     <InputLabel htmlFor="email">
                         Email
@@ -21,15 +70,18 @@ const Signup = () => {
                         id="email"
                         type="email"
                         placeholder="Your Email"
-                       
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </InputContainer>
                 <InputContainer>
-                    <InputLabel htmlFor="text">FirstName</InputLabel>
+                    <InputLabel htmlFor="text">name</InputLabel>
                     <InputField
                         id="firstName"
                         type="firstName"
                         placeholder="Your FirstName"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </InputContainer>
                 <InputContainer>
@@ -38,6 +90,8 @@ const Signup = () => {
                         id="Lastname"
                         type="Lastname"
                         placeholder="Your Name"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </InputContainer>
                 <InputContainer>
@@ -46,7 +100,7 @@ const Signup = () => {
                         id="password"
                         type="password"
                         placeholder="Your password"
-
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </InputContainer>
                 <InputContainer>
@@ -55,8 +109,19 @@ const Signup = () => {
                         id="password"
                         type="password"
                         placeholder="Your password"
+                        onChange={(e) => setConfirmPassword(e.target.value)
+                        }
                     />
                 </InputContainer>
+
+                <div className="btn-auth">
+                    <button
+                        type="submit"
+                        className="style-btn-auth"
+                        disabled={isEmptyFields}>
+                        {loading ? "Signing Up..." : "Sign up"}
+                    </button>
+                </div>
 
             </form>
         </div>

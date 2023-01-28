@@ -1,16 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 import Logo from "../assets/Whatsapp-logo.png"
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/authProvider";
+
+
 const Login = () => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const loginHandler = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        if (emailValidate(email)) {
+            const { user, message } = await loginWithUserCredentials(email, password);
+            if (user == null) {
+                setError(message);
+                setLoading(false);
+                return;
+            }
+            navigate("home", { replace: true });
+            return;
+        }
+        setError("Enter Valid Email");
+        setLoading(false);
+    };
+
+
     return (
         <div className="form-container">
             <div className="logo-wattsap">
                 <img src={Logo} alt="wattsap-logo" className="wattsap-logo" />
             </div>
-            <form className="form-style">
+            <form onSubmit={(event) => loginHandler(event)} className="form-style">
                 <FormTitle>
                     Join Wattsap Today
                 </FormTitle>
+                {error !== "" &&
+                    <p className="error-style">{error}</p>
+                }
                 <InputContainer>
                     <InputLabel
                         htmlFor="email">
@@ -20,6 +51,8 @@ const Login = () => {
                         id="email"
                         type="email"
                         placeholder="Your Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
 
                     />
                 </InputContainer>
@@ -29,14 +62,22 @@ const Login = () => {
                     >
                         Password
                     </InputLabel>
-
                     <InputField
                         id="email"
                         type="email"
                         placeholder="Your password"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </InputContainer>
-
+                <div className="btn-auth">
+                    <button
+                        type="submit"
+                        className="style-btn-auth"
+                    >
+                        {loading ? "logging Up..." : "login"}
+                    </button>
+                </div>
             </form>
         </div>
 
