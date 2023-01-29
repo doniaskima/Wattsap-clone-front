@@ -1,0 +1,39 @@
+.sidebar {
+    background-color: $greenWattsap;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 360px;
+    height: 100vh;
+    flex: 40%;
+    border-right: 1px solid #3C4247;
+    .sidebar-header {
+        .wattsap-logo {
+            display: flex;
+            gap: 10px;
+            padding: 13px;
+            .img-wattsap {
+                .watt-img {
+                    width: 23px;
+                    height: 23px;
+                }
+            }
+            h3 {
+                color: white;
+                font-size: 14px;
+            }
+        }
+        .chats-header {
+            display: flex;
+            .chats-title {
+                padding: 10px;
+                h1 {
+                    color: white;
+                    font-size: 22px;
+                    font-weight: 600;
+                    padding: 23px
+                }
+            }
+        }
+    }
+}
