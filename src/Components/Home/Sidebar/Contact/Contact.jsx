@@ -21,6 +21,9 @@ const Contact = () => {
                        9:20 PM
                     </span>
                 </div>
+                <div className="bottom-content">
+                    <p className="last-message">Yoo buddy i miss u</p>
+                </div>
             </div>
         </Link>
     )

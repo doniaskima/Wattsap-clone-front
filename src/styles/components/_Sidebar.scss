@@ -7,7 +7,7 @@
     width: 360px;
     height: 100vh;
     flex: 40%;
-    border-right: 1px solid #3c4247;
+    border-right-color: #3C4247;
     .sidebar-header {
         .wattsap-logo {
             display: flex;
@@ -118,6 +118,9 @@
     border-radius: 13px;
     border-bottom: 3px solid $tealgreen;
     margin-bottom: 20px;
+    .search::placeholder {
+        color: white;
+    }
     .VscSearch {
         color: white;
     }
