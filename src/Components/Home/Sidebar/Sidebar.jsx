@@ -2,6 +2,7 @@ import React from 'react'
 import "../../../styles/main.scss"
 import logo from "../../../assets/whatsappLogo.png";
 import { HiOutlinePencilAlt } from "react-icons/hi";
+import OptionsBtn from "./OptionBtn/OptionBtn";
 
 const Sidebar = () => {
   return (
@@ -17,12 +18,26 @@ const Sidebar = () => {
           <div className="chats-title">
             <h1>Chats</h1>
           </div>
-          <dv className="header-icons">
-            <button>
-              <HiOutlinePencilAlt/>
-            </button>
-            <button></button>
-          </dv>
+          <div className="header-icons">
+            <div>
+              <button className='HiOutlinePencilAlt'>
+                <HiOutlinePencilAlt />
+              </button>
+            </div>
+            <div>
+              <OptionsBtn
+                className="sidebar__action"
+                ariaLabel="Menu"
+                iconId="menu"
+                iconClassName="sidebar__action-icon"
+                options={[
+                  "Filters chats by",
+                  "Starred Messages",
+                ]}
+              />
+          </div>
+     
+          </div>
         </div>
       </header>
     </aside>

@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Icon from "../../../LoaderPage/Icon";
 
 const OptionBtn = ({
     className,
@@ -22,6 +23,16 @@ const OptionBtn = ({
           >
               <Icon id={iconId} className={iconClassName} /> 
           </button>
+          <ul
+              className={`options-btn__options ${showOptions ? "options-btn__options--active" : ""
+                  } ${position === "right" ? "options-btn__options--right" : ""}`}
+          >
+              {options.map((option, index) => (
+                  <li className="options-btn__option" key={index}>
+                      {option}
+                  </li>
+              ))}
+          </ul>
   </div>
   )
 }
