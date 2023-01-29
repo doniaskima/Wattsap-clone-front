@@ -4,6 +4,7 @@ import logo from "../../../assets/whatsappLogo.png";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import OptionsBtn from "./OptionBtn/OptionBtn";
 import { VscSearch } from "react-icons/vsc";
+import Contact from "./Contact/Contact";
 
 const Sidebar = () => {
   return (
@@ -48,6 +49,21 @@ const Sidebar = () => {
         <div>
           <VscSearch className="VscSearch" />
         </div>
+      </div>
+      <div className="contacts">
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
       </div>
     </aside>
   )

@@ -1,0 +1,59 @@
+ .sidebar-contact {
+     height: 72px;
+     padding: 10px 20px;
+     display: flex;
+     align-items: center;
+     border-bottom: 1px solid #EBEBEB;
+     cursor: pointer;
+     .sidebar-contact-avatar {
+         width: 50px;
+         height: 50px;
+         margin-right: 10px;
+         .avatar {
+             height: 48px;
+             width: 48px;
+             border-radius: 100%;
+             object-fit: cover
+         }
+     }
+     .sidebar-contact-content {
+         overflow: hidden;
+         flex: 1;
+         .top-content {
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             margin-bottom: 2px;
+             .contact-name {
+                 color: black;
+                 font-size: 1rem;
+                 font-weight: 600;
+             }
+             .contact-time {
+                 font-size: 0.7rem;
+                 color: rgba(0, 0, 0, 0.45);
+             }
+         }
+     }
+ }
+ 
+ .sidebar-contact:hover {
+     background-color: #EBEBEB;
+ }
+ 
+ .sidebar-contact__message-wrapper {
+     color: #00000099;
+     font-size: 0.85rem;
+     margin-right: 3px;
+     overflow: hidden;
+ }
+ 
+ .sidebar-contact__message-icon {
+     color: #B3B3B3;
+     margin-right: 3px;
+ }
+ 
+ .contacts {
+     margin-top: 10px;
+     overflow-y: scroll;
+ }
