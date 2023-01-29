@@ -1,3 +1,4 @@
+@import "../../Variables//Colors.scss";
 .sidebar {
     background-color: $greenWattsap;
     display: flex;
@@ -42,7 +43,10 @@
                 display: flex;
                 .HiOutlinePencilAlt {
                     font-size: 22px;
-                    margin-top: 4px
+                    margin-top: 4px;
+                    .hioutlinepencil-stle {
+                        color: white;
+                    }
                 }
             }
         }
@@ -80,11 +84,13 @@
     left: -210px;
 }
 
-.right {}
-
 .options-btn__options--active {
     opacity: 1;
     transform: scale(1);
+}
+
+.sidebar__action-icon {
+    color: white;
 }
 
 .options-btn__option {
@@ -96,4 +102,27 @@
 
 .options-btn__option:hover {
     background: #20272b;
+}
+
+.search-sidebar {
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+    gap: 10px;
+    height: 40px;
+    padding: 7px 10px;
+    position: relative;
+    background-color: #3c4247;
+    border-radius: 13px;
+    border-bottom: 3px solid $tealgreen;
+    .VscSearch {
+        color: white;
+    }
+    .search {
+        outline: none;
+        color: white;
+        padding: 7px 10px;
+    }
 }

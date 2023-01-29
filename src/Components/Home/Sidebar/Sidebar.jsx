@@ -3,6 +3,7 @@ import "../../../styles/main.scss"
 import logo from "../../../assets/whatsappLogo.png";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import OptionsBtn from "./OptionBtn/OptionBtn";
+import { VscSearch } from "react-icons/vsc";
 
 const Sidebar = () => {
   return (
@@ -21,7 +22,7 @@ const Sidebar = () => {
           <div className="header-icons">
             <div>
               <button className='HiOutlinePencilAlt'>
-                <HiOutlinePencilAlt />
+                <HiOutlinePencilAlt className="hioutlinepencil-stle" />
               </button>
             </div>
             <div>
@@ -35,11 +36,19 @@ const Sidebar = () => {
                   "Starred Messages",
                 ]}
               />
-          </div>
-     
+            </div>
+
           </div>
         </div>
       </header>
+      <div className="search-sidebar">
+        <div>
+          <input className="search" placeholder="Search or start a new chat" />
+        </div>
+        <div>
+          <VscSearch className="VscSearch" />
+        </div>
+      </div>
     </aside>
   )
 }
