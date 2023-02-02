@@ -27,13 +27,13 @@
             justify-content: space-between;
             margin-bottom: 2px;
             .contact-name {
-                color: black;
+                color: white;
                 font-size: 1rem;
                 font-weight: 600;
             }
             .contact-time {
                 font-size: 0.7rem;
-                color: rgba(0, 0, 0, 0.45);
+                color: white;
             }
         }
         .bottom-content {
@@ -41,7 +41,7 @@
             align-items: center;
             justify-content: space-between;
             .last-message {
-                color: #00000099;
+                color: white;
                 font-size: 0.85rem;
                 margin-right: 3px;
                 overflow: hidden;
@@ -51,7 +51,7 @@
 }
 
 .sidebar-contact:hover {
-    background-color: #ebebeb;
+    background-color: #3e3b3b;
 }
 
 .sidebar-contact__message-wrapper {
@@ -66,7 +66,7 @@
     margin-right: 3px;
 }
 
-.contacts {
-    margin-top: 10px;
-    overflow-y: scroll;
+h1 {
+    font-size: 50px;
+    color: red;
 }

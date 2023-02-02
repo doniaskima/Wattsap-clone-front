@@ -22,7 +22,7 @@ const Contact = () => {
                     </span>
                 </div>
                 <div className="bottom-content">
-                    <p className="last-message">Yoo buddy i miss u</p>
+                    <span className="last-message">Yoo buddy i miss u</span>
                 </div>
             </div>
         </Link>

@@ -1,13 +1,14 @@
 @import "../../Variables//Colors.scss";
 .sidebar {
-    background-color: $greenWattsap;
+    background-color: $bgColor;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     width: 360px;
     height: 100vh;
     flex: 40%;
-    border-right-color: #3C4247;
+    border-right-color: #2a2e32;
     .sidebar-header {
         .wattsap-logo {
             display: flex;
@@ -115,11 +116,16 @@
     padding: 7px 10px;
     position: relative;
     background-color: #3c4247;
-    border-radius: 13px;
-    border-bottom: 3px solid $tealgreen;
+    border-radius: 7px;
+    border-bottom: 3px solid #058475;
     margin-bottom: 20px;
     .search::placeholder {
         color: white;
+    }
+    .search:focus {
+        .search-sidebar {
+            border-bottom: 3px solid #058475;
+        }
     }
     .VscSearch {
         color: white;
@@ -128,5 +134,7 @@
         outline: none;
         color: white;
         padding: 7px 10px;
+        width: 200px;
+        border-radius: 12px;
     }
 }

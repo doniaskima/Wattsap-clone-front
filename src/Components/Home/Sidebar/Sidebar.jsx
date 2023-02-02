@@ -5,6 +5,7 @@ import { HiOutlinePencilAlt } from "react-icons/hi";
 import OptionsBtn from "./OptionBtn/OptionBtn";
 import { VscSearch } from "react-icons/vsc";
 import Contact from "./Contact/Contact";
+import styled from 'styled-components';
 
 const Sidebar = () => {
   return (
@@ -50,7 +51,7 @@ const Sidebar = () => {
           <VscSearch className="VscSearch" />
         </div>
       </div>
-      <div className="contacts">
+      <Contacts>
         <Contact />
         <Contact />
         <Contact />
@@ -64,13 +65,16 @@ const Sidebar = () => {
         <Contact />
         <Contact />
         <Contact />
-      </div>
+      </Contacts>
     </aside>
   )
 }
 
 
-
+export const Contacts = styled.div`
+  margin-top: 10px;
+  overflow-y: scroll;
+`
 
 
 export default Sidebar
