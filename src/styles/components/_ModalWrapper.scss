@@ -1,8 +1,15 @@
-.modalwrapper {
-    height: 30rem;
-    width: 24rem;
-    border-radius: 20px;
-    background-color: white;
-    width: 24rem;
-    width: 24rem;
+.modalWrapper {
+    border-radius: 12px;
+    width: 300px;
+    height: 500px;
+    border-radius: 8px;
+    background-color: rgb(42, 47, 50);
+    box-shadow: 0 2px 5px 0 #00000042, 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    position: absolute;
+    margin-left: 100px;
+    transition: all 0.2s ease-in;
+    z-index: 1000;
+    margin-top: 150px;
+    padding: 10px 0;
+    overflow-y: auto;
 }

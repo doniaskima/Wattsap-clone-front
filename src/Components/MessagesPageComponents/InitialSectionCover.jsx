@@ -17,7 +17,7 @@ const InitialSectionCover = () => {
             <p className="home-text">
                 <Icon id="laptop" className="home-icon" />
                 <span>
-                    WhatsApp is available for Windows, Mac ,and Linux.{" "}
+                    WhatsApp is available for Mac .{" "}
                     <a
                         href="https://www.whatsapp.com/download"
                         target="_blank"

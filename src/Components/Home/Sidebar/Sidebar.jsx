@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../../../styles/main.scss"
 import logo from "../../../assets/whatsappLogo.png";
 import { HiOutlinePencilAlt } from "react-icons/hi";
@@ -6,8 +6,11 @@ import OptionsBtn from "./OptionBtn/OptionBtn";
 import { VscSearch } from "react-icons/vsc";
 import Contact from "./Contact/Contact";
 import styled from 'styled-components';
+import NewChat from '../../MessagesPageComponents/NewChat';
+
 
 const Sidebar = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <aside className="sidebar">
       <header className="sidebar-header">
@@ -24,7 +27,9 @@ const Sidebar = () => {
           <div className="header-icons">
             <div>
               <button className='HiOutlinePencilAlt'>
-                <HiOutlinePencilAlt className="hioutlinepencil-stle" />
+                <HiOutlinePencilAlt
+                  onClick={() => setShowModal(!showModal)}
+                  className="hioutlinepencil-stle" />
               </button>
             </div>
             <div>
@@ -66,6 +71,7 @@ const Sidebar = () => {
         <Contact />
         <Contact />
       </Contacts>
+      {showModal && <NewChat setShowModal={setShowModal} />}
     </aside>
   )
 }

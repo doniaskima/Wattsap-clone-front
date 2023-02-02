@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap");
 @import "base/normalize";
 @import "base/reset";
 @import "base/fonts";
@@ -13,6 +13,7 @@
 @import "components/Sidebar";
 @import "components/InitialSectionCover";
 @import "components/ModalWrapper";
+@import "components/NewChat";
 @import "components/Contact";
 * {
     padding: 0px;
@@ -20,7 +21,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    font-family: 'Public Sans', sans-serif;
+    font-family: "Public Sans", sans-serif;
 }
 
 #root {
