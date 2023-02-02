@@ -8,6 +8,27 @@ export function scrollBottom(id) {
         document.getElementById(id).scrollHeight;
 }
 
+export async function fetchChats(userId, recipientId, endPoint) {
+    const data = {
+        userId: userId,
+    };
+    Object.assign(
+        data,
+        endPoint === "get_messages" ? { receiverId: recipientId } : { groupId: recipientId }
+    );
+    const {
+        data: { messages: chats },
+    } = await axios.post(`${baseUrl}/messages/${endPoint}`, data);
+    return chats;
+}
+
+export async function deleteSavedMessage(user, id) {
+    const { data: response } = await axios.delete(
+        `{baseUrl}/users/delete_saved_message`, { data: { userId: user._id, messageId: id } }
+    );
+    return response;
+}
+
 export async function axiosDelete(endpoint, id) {
     const { data: response } = await axios.delete(
         `${baseUrl}/${endpoint}/${id}`
