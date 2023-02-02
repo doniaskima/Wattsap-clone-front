@@ -16,9 +16,9 @@ const Contact = () => {
             </div>
             <div className="sidebar-contact-content">
                 <div className="top-content">
-                    <h2 className="contact-name"> Sirine </h2>
+                    <h2 className="contact-name">Donia </h2>
                     <span className="contact-time">
-                       9:20 PM
+                        9:20 PM
                     </span>
                 </div>
                 <div className="bottom-content">

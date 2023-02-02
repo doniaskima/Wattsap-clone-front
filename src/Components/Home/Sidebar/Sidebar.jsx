@@ -11,6 +11,7 @@ import NewChat from '../../MessagesPageComponents/NewChat';
 
 const Sidebar = () => {
   const [showModal, setShowModal] = useState(false);
+
   return (
     <aside className="sidebar">
       <header className="sidebar-header">
@@ -57,16 +58,6 @@ const Sidebar = () => {
         </div>
       </div>
       <Contacts>
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
         <Contact />
         <Contact />
         <Contact />
