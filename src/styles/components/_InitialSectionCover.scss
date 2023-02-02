@@ -1,0 +1,41 @@
+.connect-img {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.initialSection-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.initialSection-text {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 0.85rem;
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.home-text {
+    margin-top: 20px;
+    color: rgb(166, 168, 170);
+    font-size: 0.85rem;
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 27px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    .home-icon {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    .home-link {
+        color: rgb(0, 175, 156);
+    }
+}

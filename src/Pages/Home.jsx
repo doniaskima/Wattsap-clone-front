@@ -9,8 +9,8 @@ const Home = () => {
         <Sidebar />
         <InitialSectionCover />
       </HomePage>
-     
- </div>
+
+    </div>
   )
 }
 
