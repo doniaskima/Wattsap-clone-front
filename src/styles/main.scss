@@ -8,22 +8,24 @@
 @import "pages/Signup";
 @import "pages/Login";
 @import "pages/Spinner";
+@import "pages/ChatPage";
 @import "pages/Loader";
 @import "components/Chats";
 @import "components/Sidebar";
 @import "components/InitialSectionCover";
 @import "components/ModalWrapper";
 @import "components/NewChat";
+@import "components/Header";
 @import "components/Contact";
 * {
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-    font-family: "Public Sans", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Public Sans", sans-serif;
 }
 
 #root {
-    overflow: hidden;
+  overflow: hidden;
 }

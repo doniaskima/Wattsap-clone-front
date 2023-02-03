@@ -1,13 +1,16 @@
 import Sidebar from "../Components/Home/Sidebar/Sidebar"
 import InitialSectionCover from "../Components/MessagesPageComponents/InitialSectionCover"
 import styled from "styled-components";
+import Chats from "./ChatPage";
+
 
 const Home = () => {
   return (
     <div>
       <HomePage>
         <Sidebar />
-        <InitialSectionCover />
+        {/* <InitialSectionCover /> */}
+        <Chats />
       </HomePage>
 
     </div>

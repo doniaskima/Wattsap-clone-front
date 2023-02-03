@@ -1,0 +1,40 @@
+.chat-header {
+  z-index: 20;
+  .chat-header-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .chat-contact {
+    flex: 1;
+    cursor: pointer;
+  }
+  .chat-name .chat-contact-type {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .chat-name {
+    color: rgba(241, 241, 242, 0.92);
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+  .chat-contact-type {
+    color: rgba(241, 241, 242, 0.63);
+  }
+  .chat-appels {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    .chat__action {
+      margin-left: 25px;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      .chat__action:not(.options-btn) {
+        display: inline-block;
+      }
+    }
+  }
+}
