@@ -1,0 +1,19 @@
+.send-message-component {
+  padding: 10px;
+  height: 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .send-message-icon {
+    color: rgb(130, 134, 137);
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 28px;
+    height: 28px;
+    padding: 3px;
+    border-radius: 50%;
+  }
+  .send-message-icon-highligh {
+    color: teal;
+  }
+}

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Header from "../Components/MessagesPageComponents/Header";
 import ChatSidebar from '../Components/MessagesPageComponents/ChatSidebar';
 import Profile from '../Components/Profile/Profile';
+import SendMessage from "../Components/MessagesPageComponents/SendMessageForm"
+
 
 const Chats = () => {
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
@@ -20,6 +22,12 @@ const Chats = () => {
                 <Header
                     openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                 />
+                <div className="chat-messages">
+
+                </div>
+                <footer className="message-footer">
+                    <SendMessage />
+                </footer>
 
             </div>
             <ChatSidebar
