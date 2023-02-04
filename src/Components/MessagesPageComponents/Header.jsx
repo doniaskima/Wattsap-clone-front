@@ -4,10 +4,12 @@ import { BsCameraVideo } from "react-icons/bs";
 import { BsTelephone } from "react-icons/bs";
 import { VscSearch } from "react-icons/vsc"
 
-const Header = () => {
+const Header = ({ openProfileSidebar }) => {
   return (
     <header className="chat-header header">
-      <div className="chat-header-avatar">
+      <div className="chat-header-avatar"
+        onClick={openProfileSidebar}
+      >
         <img src={avatar} alt="avatar" className="avatar" />
       </div>
       <div className="chat-contact">
