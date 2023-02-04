@@ -17,15 +17,16 @@
 @import "components/NewChat";
 @import "components/Header";
 @import "components/Contact";
+@import "components/ChatSidebar";
 * {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  font-family: "Public Sans", sans-serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Public Sans", sans-serif;
 }
 
 #root {
-  overflow: hidden;
+    overflow: hidden;
 }

@@ -1,0 +1,29 @@
+.chat-sidebar {
+    width: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.1s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.chat-sidebar--active {
+    flex: 30%;
+}
+
+.chat-sidebar__header-icon {
+    margin-right: 20px;
+    color: rgb(145, 145, 145);
+}
+
+.chat-sidebar__heading {
+    flex: 1;
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.chat-sidebar__content {
+    flex: 1;
+}

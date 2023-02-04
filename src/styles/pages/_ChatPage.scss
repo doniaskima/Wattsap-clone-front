@@ -1,24 +1,23 @@
 .chats {
+  display: flex;
+  position: relative;
+  .chats-body {
+    min-width: 300px;
+    flex: 40%;
+    border-right-color: #3c4247;
     display: flex;
+    flex-direction: column;
     position: relative;
-    .chats-body {
-        min-width: 300px;
-        flex: 40%;
-        border-right-color: #3c4247;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-        .chats-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            opacity: 0.05;
-            z-index: 1;
-            background-color: red;
-            background: url(../../assets//bg-chat-dark.png);
-        }
+    z-index: 1;
+    .chats-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0.05;
+      z-index: 1;
+      background: url(../../assets//bg-chat-dark.png);
     }
+  }
 }
