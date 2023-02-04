@@ -93,12 +93,12 @@ const Profile = () => {
                 <div className="profile__heading-wrapper">
                     <h2 className="about-number "> About and phone number </h2>
                 </div>
-                <ul>
-                    <li className="profile__about-item">
+                <div>
+                    <div className="profile__about-item">
                         Out here saving the world, one block of code at a time.
-                    </li>
-                    <li className="profile__about-item">+23423456789</li>
-                </ul>
+                    </div>
+                    <div className="profile__about-item number">+23423456789</div>
+                </div>
             </AboutAndPhoneNumber>
             <CommonGroups>
                 <div className="profile__heading-wrapper">
@@ -196,6 +196,7 @@ export const AboutAndPhoneNumber = styled.div`
     margin-bottom: 10px;
     background: rgb(19, 28, 33);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px 0px;
+   
 `
 
 export const CommonGroups = styled.div`

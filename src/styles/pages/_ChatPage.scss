@@ -1,6 +1,7 @@
 .chats {
   display: flex;
   position: relative;
+  overflow-y: auto;
   .chats-body {
     min-width: 300px;
     flex: 40%;
