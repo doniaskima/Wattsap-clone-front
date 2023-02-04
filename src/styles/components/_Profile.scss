@@ -1,19 +1,143 @@
 .profile-component-avatar {
-    width: 200px;
-    width: 200px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 200px;
+  width: 200px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-sidebar-heading {
+  color: white;
+  font-weight: 600;
+}
+
+.profile__heading-wrapper {
+  margin-left: 10px;
+  .about-number {
+    color: rgb(0, 150, 136);
+    font-weight: 600;
+  }
+}
+
+.profile__heading-icon {
+  color: rgb(145, 145, 145);
 }
 
 .profile-name {
-    flex: 1;
-    color: #000000;
-    font-size: 1.2rem;
-    align-self: flex-start;
+  flex: 1;
+  color: white;
+  font-size: 1.2rem;
+  align-self: flex-start;
 }
 
 .profile-media-heading {
-    color: rgb(0, 150, 136);
+  color: rgb(0, 150, 136);
+  font-weight: 600;
+}
+
+.common-groups-heading {
+  color: rgb(0, 150, 136);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  font-weight: 500;
+}
+
+.profile-media {
+  width: 32%;
+}
+
+.profile__about-item {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: white;
+  margin: 10px;
+}
+
+.mute-notifications {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+  margin-bottom: 5px;
+  cursor: pointer;
+  .mute-notification-left {
+    margin-left: 20px;
+    .mute-notification-title {
+      color: white;
+      font-weight: 500;
+    }
+  }
+  .mute-notification-right {
+    .checkbox__label {
+      font-size: 12px;
+      .checkbox__icon {
+        color: white;
+      }
+    }
+  }
+}
+
+.group-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  .avatar-group {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    .group-avatar {
+      height: 60px;
+      width: 60px;
+      border-radius: 100%;
+      object-fit: cover;
+    }
+  }
+  .group-content {
+    flex: 1;
+    overflow: hidden;
+    .group-name {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+      text-overflow: ellipsis;
+      margin-left: 10px;
+    }
+    .group-members {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: grey;
+      font-size: 0.85rem;
+      overflow: hidden;
+      margin-left: 10px;
+    }
+  }
+}
+
+.profile-danger {
+  margin-bottom: 10px;
+  background: rgb(19, 28, 33);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px 0px;
+  padding: 10px 20px;
+  margin: 10px;
+  color: rgb(223, 51, 51);
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .danger-icon {
+    margin-right: 20px;
+  }
 }
