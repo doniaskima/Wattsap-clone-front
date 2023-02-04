@@ -5,14 +5,13 @@ import Profile from '../Components/Profile/Profile';
 
 const Chats = () => {
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
-
+    
     const openSidebar = (cb) => {
         // close any open sidebar first
         setShowProfileSidebar(false);
         // call callback fn
         cb(true);
     };
-    
     return (
         <div className="chats">
             <div className="chats-body">

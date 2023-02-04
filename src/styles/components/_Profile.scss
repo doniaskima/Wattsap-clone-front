@@ -1,0 +1,19 @@
+.profile-component-avatar {
+    width: 200px;
+    width: 200px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-name {
+    flex: 1;
+    color: #000000;
+    font-size: 1.2rem;
+    align-self: flex-start;
+}
+
+.profile-media-heading {
+    color: rgb(0, 150, 136);
+}
