@@ -1,14 +1,7 @@
 import React from 'react';
-import Icon from "../LoaderPage/Icon"
-
-const attachButtons = [
-    { icon: "attachRooms", label: "Choose room" },
-    { icon: "attachContacts", label: "Choose contact" },
-    { icon: "attachDocument", label: "Choose document" },
-    { icon: "attachCamera", label: "Use camera" },
-    { icon: "attachImage", label: "Choose image" },
-];
-
+import Icon from "../LoaderPage/Icon";
+import { GrFormAttachment } from "react-icons/gr";
+ 
 
 const SendMessageForm = ({
     showAttach,
@@ -19,6 +12,7 @@ const SendMessageForm = ({
     setNewMessage,
     submitNewMessage,
 }) => {
+
     return (
         <div className="send-message-component">
             {
@@ -35,6 +29,19 @@ const SendMessageForm = ({
                         }`}
                 />
             </button>
+            <div className="">
+                <button aria-label="Attach" onClick={() => setShowAttach(!showAttach)}>
+                    <Icon
+                        id="attach"
+                        className={`chat-input-icon ${showAttach ? "chat-input-icon--pressed" : ""
+                            }`}
+                    />
+                </button>
+            </div>
+            <input
+                className="chat-input"
+                placeholder="Type a message"
+            />
 
         </div>
     )

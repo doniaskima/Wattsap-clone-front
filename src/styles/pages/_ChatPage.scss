@@ -22,3 +22,12 @@
     }
   }
 }
+
+.chat-messages {
+  flex: 1;
+  position: relative;
+  background: #e4dcd4;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 20px 5% 2pc;
+}
