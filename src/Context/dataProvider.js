@@ -1,7 +1,5 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-
-
 import {
     baseUrl,
     fetchChats,
@@ -9,6 +7,7 @@ import {
     axiosDelete,
     deleteSavedMessage,
 } from "../utils/api";
+
 import { useAuth } from "../authProvider";
 
 const DataContext = createContext();
