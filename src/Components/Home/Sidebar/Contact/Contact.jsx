@@ -1,8 +1,13 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../../../../assets/avatar.jpeg"
+import { useSocket } from '../../../../Context/socket';
+import { useData } from "../../../../Context/dataProvider";
 
 const Contact = () => {
+    const socket = useSocket();
+    const [showStartMessage, setShowStartMessage] = useState(false);
+
     return (
         <Link
             className="sidebar-contact"

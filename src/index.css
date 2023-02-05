@@ -7,6 +7,7 @@ body {
     overflow: hidden;
 }
 
+@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:400,500,900&display=swap");
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
@@ -22,4 +23,19 @@ code {
 
 ::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background-color: #d1d5db !important;
 }

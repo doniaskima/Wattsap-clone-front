@@ -6,8 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Context/authProvider";
 import { SocketContext, socket } from "./Context/socket";
 
-
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>

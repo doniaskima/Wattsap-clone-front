@@ -8,10 +8,9 @@ import {
     deleteSavedMessage,
 } from "../utils/api";
 
-import { useAuth } from "../authProvider";
+import { useAuth } from "./authProvider";
 
 const DataContext = createContext();
-
 
 export const DataProvider = ({ children }) => {
     const { user } = useAuth();
@@ -29,7 +28,9 @@ export const DataProvider = ({ children }) => {
                 setRecipients(res.data.recipients);
                 setLoading(false);
                 setLoading(true);
-                const secondResponse = await axios.get(`${baseUrl}/users/groups/${user._id}`);
+                const secondResponse = await axios.get(
+                    `${baseUrl}/users/groups/${user._id}`
+                );
                 setGroups(secondResponse.data.groups);
                 setLoading(false);
             } catch (err) {
@@ -39,9 +40,6 @@ export const DataProvider = ({ children }) => {
         };
         fetch();
     }, []);
-
-
-
 
     const addRecipient = (item) => {
         if (recipients.findIndex((r) => r._id === item.sender._id) === -1) {
@@ -53,7 +51,11 @@ export const DataProvider = ({ children }) => {
         setRecipients((prevData) => prevData.filter((obj) => obj._id !== id));
     };
 
-    const addGroup = (id, name, description, isPublic) => {
+    const addGroup = (item) => {
+        setGroups((prevData) => [...prevData, item]);
+    };
+
+    const updateGroup = (id, name, description, isPublic) => {
         function callback(obj) {
             if (obj._id === id) {
                 obj.name = name;
@@ -63,10 +65,22 @@ export const DataProvider = ({ children }) => {
             return obj;
         }
         setGroups((prevState) => prevState.map(callback));
-    }
-
+    };
     const removeGroup = (id) => {
         setGroups((prevData) => prevData.filter((obj) => obj._id !== id));
+    };
+
+    const fetchMessages = async (userId, recipientId, endpoint) => {
+        setMessagesLoading(true);
+        const chats = await fetchChats(userId, recipientId, endpoint);
+        setMessages(chats);
+        setMessagesLoading(false);
+        scrollBottom("messages");
+    };
+
+    const addMessageCallback = (info) => {
+        setMessages((prevState) => [...prevState, info]);
+        scrollBottom("messages");
     };
 
     const fetchSavedMessages = async (id) => {
@@ -108,9 +122,7 @@ export const DataProvider = ({ children }) => {
         >
             {children}
         </DataContext.Provider>
-    )
-}
-
-
+    );
+};
 
 export const useData = () => useContext(DataContext);
