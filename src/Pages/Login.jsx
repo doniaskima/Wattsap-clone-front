@@ -6,6 +6,7 @@ import { useAuth } from "../Context/authProvider";
 
 
 const Login = () => {
+    const { loginWithUserCredentials, emailValidate } = useAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ const Login = () => {
                 setLoading(false);
                 return;
             }
-            navigate("home", { replace: true });
+            navigate("/home");
             return;
         }
         setError("Enter Valid Email");
@@ -63,11 +64,11 @@ const Login = () => {
                         Password
                     </InputLabel>
                     <InputField
-                        id="email"
-                        type="email"
+                        id="password"
+                        type="password"
                         placeholder="Your password"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </InputContainer>
                 <div className="btn-auth">
