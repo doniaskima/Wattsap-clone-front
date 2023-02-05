@@ -23,12 +23,11 @@ const Chats = () => {
                     openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                 />
                 <div className="chat-messages">
-
+                    
                 </div>
                 <footer className="message-footer">
                     <SendMessage />
                 </footer>
-
             </div>
             <ChatSidebar
                 heading="Contact Info"
