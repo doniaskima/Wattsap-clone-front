@@ -19,6 +19,7 @@ const EmojisComponent = ({ ShowEmojis, newMessage, setNewMessage }) => {
   const addEmoji = (emoji) => {
     setNewMessage(newMessage + emoji);
   }
+  
   return (
     <div className={`emoji-wrapper ${showEmojis} ? "emoji-wrapper--active : "`}>
       <div className="emojis-tabs">

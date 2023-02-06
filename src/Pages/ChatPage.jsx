@@ -6,6 +6,7 @@ import SendMessage from "../Components/MessagesPageComponents/SendMessageForm";
 import { DataProvider } from "../Context/dataProvider";
 import { useAuth } from '../Context/authProvider';
 import { useSocket } from '../Context/socket';
+import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
 
 
 const Chats = () => {
