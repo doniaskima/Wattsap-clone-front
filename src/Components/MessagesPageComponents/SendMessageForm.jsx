@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from "../LoaderPage/Icon";
+import EmojiTab from "../MessagesPageComponents/EmojisComponent";
 import { GrFormAttachment } from "react-icons/gr";
  
 
