@@ -13,9 +13,11 @@ import { useAuth } from "../../../Context/authProvider"
 import { baseUrl } from "../../../utils/api"
 import { useSocket } from "../../../Context/socket";
 import Spinner from "../../Spinner"
+import StartConversation from "../../MessagesPageComponents/StartConversation";
 
 const Sidebar = () => {
   const [email, setEmail] = useState("");
+  const [showStartMessage, setShowStartMessage] = useState(false);
   const [error, setError] = useState("");
   const socket = useSocket();
   const { groups, recipients, addRecipient, loading } = useData();
@@ -110,6 +112,7 @@ const Sidebar = () => {
           <VscSearch className="VscSearch" />
         </div>
       </div>
+
       <Contacts>
         {loading ? (
           <div className="flex justify-center mt-2">
