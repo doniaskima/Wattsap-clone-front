@@ -1,18 +1,38 @@
-import React from 'react';
+import { useState } from "react";
+import { useAuth } from "../../Context/authProvider";
+import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
 import EmojiTab from "../MessagesPageComponents/EmojisComponent";
 import { GrFormAttachment } from "react-icons/gr";
 
-
-const SendMessageForm = ({
-    showAttach,
+const SendMessageComponent = ({ recipient, showAttach,
     setShowAttach,
     showEmojis,
     setShowEmojis,
     newMessage,
     setNewMessage,
-    submitNewMessage,
-}) => {
+    submitNewMessage, }) => {
+    const { user } = useAuth();
+    const [message, setMessage] = useState("");
+    const socket = useSocket();
+    const sendHandler = async (e) => {
+        e.preventDefault();
+        setMessage("");
+        if (recipient?.type === "saved") {
+            socket.emit("saveMessage", {
+                user: user,
+                message: message,
+            });
+            return;
+        }
+        else {
+            socket.emit("sendMessage", {
+                sender: user,
+                receiver: recipient,
+                message: message,
+            });
+        }
+    };
 
     return (
         <div className="send-message-component">
@@ -30,7 +50,6 @@ const SendMessageForm = ({
                         }`}
                 />
             </button>
-            
             <div className="">
                 <button aria-label="Attach" onClick={() => setShowAttach(!showAttach)}>
                     <Icon
@@ -40,13 +59,21 @@ const SendMessageForm = ({
                     />
                 </button>
             </div>
-            <input
-                className="chat-input"
-                placeholder="Type a message"
-            />
+            <form
+                onSubmit={(e) => sendHandler(e)}
+            >
+                <input
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="chat-input"
+                    placeholder="Type a message"
+                />
 
+            </form>
         </div>
-    )
-}
+    );
+};
 
-export default SendMessageForm
+
+export default SendMessageComponent;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import Header from "../Components/MessagesPageComponents/Header";
 import ChatSidebar from '../Components/MessagesPageComponents/ChatSidebar';
 import Profile from '../Components/Profile/Profile';
@@ -9,6 +10,7 @@ import { useData } from '../Context/dataProvider';
 import { useSocket } from '../Context/socket';
 import { useLocation } from "react-router-dom";
 import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
+import Spinner from "../Components/Spinner";
 
 
 const Chats = () => {
@@ -16,6 +18,7 @@ const Chats = () => {
     const socket = useSocket();
     const { pathname } = useLocation();
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
+
     const {
         messagesLoading,
         messages,
@@ -25,9 +28,26 @@ const Chats = () => {
         messageDeleteHandler,
     } = useData();
     const { state: recipient } = useLocation();
+    let date;
 
+    useEffect(() => {
+        socket.on("message", addMessageCallback);
+        socket.on("groupMessage", addMessageCallback);
+        socket.on("savedMessage", addMessageCallback);
+    })
 
-
+    useEffect(() => {
+        const fetch = async () => {
+            if (isGroup) {
+                await fetchMessages(user._id, recipient._id, "get_group_messages");
+            } else if (recipient?.type !== "saved") {
+                await fetchMessages(user._id, recipient._id, "get_messages");
+            } else {
+                await fetchSavedMessages(user._id);
+            }
+        };
+        fetch();
+    }, [recipient]);
     const openSidebar = (cb) => {
         // close any open sidebar first
         setShowProfileSidebar(false);
@@ -48,10 +68,43 @@ const Chats = () => {
                         openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                     />
                     <div className="chat-messages">
-
+                        {messagesLoading ? (
+                            <div className="flex justify-center mt-4">
+                                <Spinner />
+                            </div>
+                        ) : (
+                            messages.map((msg, index) => {
+                                const currentDate = dayjs(msg?.createdAt).format("DD-MM-YYYY");
+                                let showDate =
+                                    index === 0 ? true : date === currentDate ? false : true;
+                                date =
+                                    index === 0
+                                        ? currentDate
+                                        : date === currentDate
+                                            ? date
+                                            : currentDate;
+                                return (
+                                    <div key={msg?.messageId}>
+                                        {showDate && (
+                                            <p className="w-full flex justify-center my-3">
+                                                <span className="shadow-lg rounded-full py-1 px-2 font-normal">
+                                                    {date}
+                                                </span>
+                                            </p>
+                                        )}
+                                        <Message
+                                            msg={msg}
+                                            isAdmin={isAdmin}
+                                            isGroup={isGroup}
+                                            messageDeleteHandler={messageDeleteHandler}
+                                        />
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
                     <footer className="message-footer">
-                        <SendMessage />
+                        <SendMessage recipient={recipient} />
                     </footer>
                 </div>
                 <ChatSidebar
