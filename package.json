@@ -19,6 +19,7 @@
     "react-icons": "^4.7.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.7.0",
+    "react-spinners": "^0.13.8",
     "sass": "^1.57.1",
     "socket.io-client": "^4.5.4",
     "styled-components": "^5.3.6"

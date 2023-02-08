@@ -1,7 +1,13 @@
-import { CgSpinner } from "react-icons/cg";
+import React from 'react'
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const Spinner = () => {
-    return <CgSpinner className="text-5xl animate-spin text-blue-500" />
+    return (
+        <div className="spinner">
+            <ClipLoader />
+        </div>
+    )
 }
 
-export default Spinner;
+export default Spinner

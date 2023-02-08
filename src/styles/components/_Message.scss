@@ -1,53 +1,57 @@
 .message-component {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
+  position: relative;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  .message_send-by_client {
     position: relative;
+    width: min-content;
+    white-space: nowrap;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 1.5rem;
+  }
+  .message_is_send {
+    background-color: $highlightColor;
+    color: white;
+    border-bottom-right-radius: 0px;
+    margin-left: auto;
+  }
+  .message_is_not_byclient {
+    color: black;
+    background-color: white;
+    border-bottom-right-radius: 0px;
+  }
+  .trash {
+    position: absolute;
+    color: red;
+    bottom: 0px;
+  }
+  .left {
+    left: -1.75rem;
+  }
+  .right {
+    right: -1.75rem /* -28px */;
+  }
+  .decrypted-message {
+    display: flex;
+    justify-content: space-between;
     align-items: flex-end;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    .message_send-by_client {
-        position: relative;
-        width: min-content;
-        white-space: nowrap;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 0.75rem;
-        padding-bottom: 0.75rem;
-        border-radius: 1.5rem;
-    }
-    .message_is_send {
-        background-color: $highlightColor;
-        color: white;
-        border-bottom-right-radius: 0px;
-        margin-left: auto;
-    }
-    .message_is_not_byclient {
-        color: black;
-        background-color: white;
-        border-bottom-right-radius: 0px;
-    }
-    .trash {
-        position: absolute;
-        color: red;
-        bottom: 0px;
-    }
-    .left {
-        left: -1.75rem;
-    }
-    .right {
-        right: -1.75rem/* -28px */
-        ;
-    }
-    .decrypted-message {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-    .decrMessage {
-        margin-right: 0.5rem;
-    }
-    .time-style {
-        font-size: 0.6rem/* 9.6px */
-        ;
-    }
+  }
+  .decrMessage {
+    margin-right: 0.5rem;
+  }
+  .time-style {
+    font-size: 0.6rem /* 9.6px */;
+  }
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
