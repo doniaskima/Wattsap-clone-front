@@ -19,11 +19,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home />}>
+              <Route path=":id" element={<Chats />} />
+            </Route>
           </Route>
-          {/* <Route path="/home" element={<PrivateRoute />}>
-          <Route path="/home" element={<Home />} />
-        </Route> */}
         </Routes>
       </DataProvider>
 

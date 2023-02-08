@@ -6,12 +6,15 @@ import { useLocation, Outlet } from "react-router-dom";
 
 
 const Home = () => {
+  const { pathname } = useLocation();
   return (
     <div>
       <HomePage>
         <Sidebar />
-        {/* <InitialSectionCover /> */}
-        <Chats />
+        {pathname === "/home" && (
+          <InitialSectionCover />
+        )}
+        <Outlet />
       </HomePage>
 
     </div>
