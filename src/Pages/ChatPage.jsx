@@ -68,40 +68,8 @@ const Chats = () => {
                         openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                     />
                     <div className="chat-messages">
-                        {messagesLoading ? (
-                            <div className="flex justify-center mt-4">
-                                <Spinner />
-                            </div>
-                        ) : (
-                            messages.map((msg, index) => {
-                                const currentDate = dayjs(msg?.createdAt).format("DD-MM-YYYY");
-                                let showDate =
-                                    index === 0 ? true : date === currentDate ? false : true;
-                                date =
-                                    index === 0
-                                        ? currentDate
-                                        : date === currentDate
-                                            ? date
-                                            : currentDate;
-                                return (
-                                    <div key={msg?.messageId}>
-                                        {showDate && (
-                                            <p className="w-full flex justify-center my-3">
-                                                <span className="shadow-lg rounded-full py-1 px-2 font-normal">
-                                                    {date}
-                                                </span>
-                                            </p>
-                                        )}
-                                        <Message
-                                            msg={msg}
-                                            isAdmin={isAdmin}
-                                            isGroup={isGroup}
-                                            messageDeleteHandler={messageDeleteHandler}
-                                        />
-                                    </div>
-                                );
-                            })
-                        )}
+
+
                     </div>
                     <footer className="message-footer">
                         <SendMessage recipient={recipient} />
