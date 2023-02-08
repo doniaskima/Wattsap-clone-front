@@ -6,21 +6,6 @@ import { useData } from "../../../../Context/dataProvider";
 
 const Contact = () => {
     const socket = useSocket();
-    const [showStartMessage, setShowStartMessage] = useState(false);
-    const { groups, recipients, addRecipient, loading } = useData();
-
-    useEffect(() => {
-        socket.on("newRecipient", (info) => {
-            addRecipient(info.sender);
-        });
-
-        return () => {
-            socket.off("newRecipient", (info) => {
-                addRecipient(info.sender);
-            });
-        };
-    }, []);
-
     return (
         <Link
             // to={recipient._id} key={recipient._id} state={recipient}

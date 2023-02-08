@@ -16,7 +16,6 @@ const Chats = () => {
     const openSidebar = (cb) => {
         // close any open sidebar first
         setShowProfileSidebar(false);
-
         // call callback fn
         cb(true);
     };
