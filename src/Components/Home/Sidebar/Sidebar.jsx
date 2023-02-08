@@ -37,7 +37,7 @@ const Sidebar = () => {
     if (emailValidate(email)) {
       const {
         data: { status, user: recipient },
-      } = await axios.get(`${BASE_URL}/users/get_by_email/${email}`);
+      } = await axios.get(`${baseUrl}/users/get_by_email/${email}`);
       if (status) {
         socket.emit("startMessage", {
           senderId: user._id,
