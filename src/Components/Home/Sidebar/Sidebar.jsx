@@ -15,6 +15,8 @@ import { useSocket } from "../../../Context/socket";
 import Spinner from "../../Spinner"
 
 const Sidebar = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const socket = useSocket();
   const { groups, recipients, addRecipient, loading } = useData();
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +30,29 @@ const Sidebar = () => {
         addRecipient(info.sender);
       });
     };
-  }, [])
+  }, []);
+
+  const startMessage = async (event) => {
+    event.preventDefault();
+    if (emailValidate(email)) {
+      const {
+        data: { status, user: recipient },
+      } = await axios.get(`${BASE_URL}/users/get_by_email/${email}`);
+      if (status) {
+        socket.emit("startMessage", {
+          senderId: user._id,
+          receiverEmail: email,
+          senderEmail: user.email,
+        });
+        addRecipient(recipient);
+        setShowStartMessage(false);
+        return;
+      }
+      setError("Recipient not found");
+      return;
+    }
+    setError("enter valid email");
+  };
 
 
   return (
@@ -71,9 +95,17 @@ const Sidebar = () => {
         </div>
       </header>
       <div className="search-sidebar">
-        <div>
-          <input className="search" placeholder="Search or start a new chat" />
-        </div>
+        <form onSubmit={(e) => startMessage(e)}>
+          <input
+            type="text"
+            placeholder="Recipient Email"
+            value={email}
+            onChange={(e) => {
+              setError("");
+              setEmail(e.target.value);
+            }}
+            className="search" />
+        </form>
         <div>
           <VscSearch className="VscSearch" />
         </div>
