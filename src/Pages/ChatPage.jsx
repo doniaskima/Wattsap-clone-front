@@ -12,11 +12,22 @@ import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
 
 
 const Chats = () => {
-    const { recipient } = useData();
+    const { user } = useAuth();
     const socket = useSocket();
     const { pathname } = useLocation();
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
-    const { user } = useAuth();
+    const {
+        messagesLoading,
+        messages,
+        fetchMessages,
+        addMessageCallback,
+        fetchSavedMessages,
+        messageDeleteHandler,
+    } = useData();
+    const { state: recipient } = useLocation();
+
+
+
     const openSidebar = (cb) => {
         // close any open sidebar first
         setShowProfileSidebar(false);

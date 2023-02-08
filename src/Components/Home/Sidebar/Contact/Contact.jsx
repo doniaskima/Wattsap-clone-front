@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import avatar from "../../../../assets/avatar.jpeg"
 import { useSocket } from '../../../../Context/socket';
 import { useData } from "../../../../Context/dataProvider";
 
-const Contact = () => {
+const Contact = ({ recipient }) => {
+    const { recipients } = useData();
     const socket = useSocket();
     return (
         <Link
-            // to={recipient._id} key={recipient._id} state={recipient}
+            to={recipient._id} key={recipient._id} state={recipient}
             className="sidebar-contact"
         >
             <div className="sidebar-contact-avatar">

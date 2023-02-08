@@ -107,8 +107,8 @@ const Sidebar = () => {
         ) : (
           recipients?.map((recipient) => {
             return (
-              <Link to={recipient._id} key={recipient._id} state={recipient}>
-                <Contact>{recipient.name}</Contact>
+              <Link to={recipient._id} key={recipient._id}  state={recipient}>
+                <Contact recipient={recipient}>{recipient.name}</Contact>
               </Link>
             );
           })
