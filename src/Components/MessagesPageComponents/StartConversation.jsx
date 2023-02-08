@@ -1,16 +1,24 @@
-import axios from "axios";
-import { useState } from "react";
-import { useAuth } from "../../Context/authProvider";
-import { useData } from "../../Context/dataProvider";
-import { useSocket } from "../../Context/socket";
-import { baseUrl } from "../../utils/api";
 
- const StartConversation = ({ setShowStartMessage }) => {
-    const socket = useSocket();
-    const { user, emailValidate } = useAuth();
-    const [email, setEmail] = useState("");
+import { useEffect, useState } from "react";
+import { VscSearch } from "react-icons/vsc";
+import { baseUrl } from "../../utils/api";
+import { useData } from "../../Context/dataProvider"
+import { socket } from "../../Context/socket";
+
+const StartConversation = () => {
     const [error, setError] = useState("");
-    const { addRecipient } = useData();
+    const [email, setEmail] = useState("");
+    const { groups, recipients, addRecipient, loading } = useData();
+    useEffect(() => {
+        socket.on("newRecipient", (info) => {
+            addRecipient(info.sender)
+        });
+        return () => {
+            socket.off("newRecipient", (info) => {
+                addRecipient(info.sender);
+            });
+        };
+    }, []);
 
     const startMessage = async (event) => {
         event.preventDefault();
@@ -36,30 +44,19 @@ import { baseUrl } from "../../utils/api";
 
     return (
         <div className="search-sidebar">
+            {error !== "" && <p className="text-red-500 text-center">{error}</p>}
             <form onSubmit={(e) => startMessage(e)}>
                 <input
                     type="text"
                     placeholder="Recipient Email"
                     value={email}
                     onChange={(e) => {
-                        setError("");
                         setEmail(e.target.value);
                     }}
                     className="search" />
             </form>
             <div>
-                <button
-                    type="submit"
-                    disabled={email === ""}
-                >
-                    <VscSearch
-                        className="VscSearch" />
-                </button>
-                <i
-                    onClick={() => setShowStartMessage(false)}
-                    className="fa fa-close ml-2"
-                ></i>
-
+                <VscSearch className="VscSearch" />
             </div>
         </div>
 

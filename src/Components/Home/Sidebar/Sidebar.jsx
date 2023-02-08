@@ -96,23 +96,9 @@ const Sidebar = () => {
           </div>
         </div>
       </header>
-      <div className="search-sidebar">
-        <form onSubmit={(e) => startMessage(e)}>
-          <input
-            type="text"
-            placeholder="Recipient Email"
-            value={email}
-            onChange={(e) => {
-              setError("");
-              setEmail(e.target.value);
-            }}
-            className="search" />
-        </form>
-        <div>
-          <VscSearch className="VscSearch" />
-        </div>
+      <div>
+        <StartConversation />
       </div>
-
       <Contacts>
         {loading ? (
           <div className="flex justify-center mt-2">

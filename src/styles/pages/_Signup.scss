@@ -1,39 +1,39 @@
 @import "../../Variables/Colors.scss";
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa:wght@300&family=Domine:wght@600&family=Oswald:wght@500&family=Syne+Mono&family=Ubuntu:ital@1&display=swap");
 .form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: auto;
+  .logo-wattsap {
+    .wattsap-logo {
+      width: 80px;
+      width: 80px;
+      margin-bottom: 14px;
+    }
+  }
+  .form-style {
+    width: 600px;
+    background-color: $greenWattsap;
+    padding: 45px 35px !important;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    margin-top: 80px;
-    .logo-wattsap {
-        .wattsap-logo {
-            width: 80px;
-            width: 80px;
-            margin-bottom: 14px;
-        }
-    }
-    .form-style {
-        width: 600px;
-        background-color: $greenWattsap;
-        padding: 45px 35px !important;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        margin: auto;
-        border-radius: 6px;
-    }
+    gap: 25px;
+    margin: auto;
+    border-radius: 6px;
+  }
 }
 
 .btn-auth {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: aliceblue;
-    .style-btn-auth {
-        color: white;
-        padding: 12px 13px;
-        border: 1px solid white;
-        border-radius: 4px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: aliceblue;
+  .style-btn-auth {
+    color: white;
+    padding: 12px 13px;
+    border: 1px solid white;
+    border-radius: 4px;
+  }
 }

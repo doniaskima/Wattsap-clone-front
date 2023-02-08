@@ -8,7 +8,6 @@ const Signup = () => {
     const { signupWithUserCredentials, emailValidate } = useAuth();
     const navigate = useNavigate();
     const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -71,21 +70,11 @@ const Signup = () => {
                 <InputContainer>
                     <InputLabel htmlFor="text">name</InputLabel>
                     <InputField
-                        id="firstName"
-                        type="firstName"
-                        placeholder="Your FirstName"
+                        id="name"
+                        type="name"
+                        placeholder="Your name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel htmlFor="text">LastName</InputLabel>
-                    <InputField
-                        id="Lastname"
-                        type="Lastname"
-                        placeholder="Your Name"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </InputContainer>
                 <InputContainer>
