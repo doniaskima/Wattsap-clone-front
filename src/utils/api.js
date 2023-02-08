@@ -13,9 +13,7 @@ export async function fetchChats(userId, recipientId, endPoint) {
     };
     Object.assign(
         data,
-        endPoint === "get_messages" ?
-        { receiverId: recipientId } :
-        { groupId: recipientId }
+        endPoint === "get_messages" ? { receiverId: recipientId } : { groupId: recipientId }
     );
     const {
         data: { messages: chats },

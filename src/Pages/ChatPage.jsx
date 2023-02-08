@@ -5,12 +5,16 @@ import Profile from '../Components/Profile/Profile';
 import SendMessage from "../Components/MessagesPageComponents/SendMessageForm";
 import { DataProvider } from "../Context/dataProvider";
 import { useAuth } from '../Context/authProvider';
+import { useData } from '../Context/dataProvider';
 import { useSocket } from '../Context/socket';
+import { useLocation } from "react-router-dom";
 import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
 
 
 const Chats = () => {
+    const { recipient } = useData();
     const socket = useSocket();
+    const { pathname } = useLocation();
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
     const { user } = useAuth();
     const openSidebar = (cb) => {
@@ -19,7 +23,6 @@ const Chats = () => {
         // call callback fn
         cb(true);
     };
-
     useEffect(() => {
         socket.emit("connectUser", { name: user.name });
     }, []);
@@ -30,6 +33,7 @@ const Chats = () => {
                 <div className="chats-body">
                     <div className="chats-bg"></div>
                     <Header
+                        recipient={recipient}
                         openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                     />
                     <div className="chat-messages">

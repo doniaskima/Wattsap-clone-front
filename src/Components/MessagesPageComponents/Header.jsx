@@ -3,8 +3,11 @@ import avatar from "../../assets/avatar.jpeg";
 import { BsCameraVideo } from "react-icons/bs";
 import { BsTelephone } from "react-icons/bs";
 import { VscSearch } from "react-icons/vsc"
+import { useAuth } from "../../Context/authProvider";
 
-const Header = ({ openProfileSidebar }) => {
+
+const Header = ({ openProfileSidebar, recipient }) => {
+
   return (
     <header className="chat-header header">
       <div className="chat-header-avatar"
@@ -13,7 +16,7 @@ const Header = ({ openProfileSidebar }) => {
         <img src={avatar} alt="avatar" className="avatar" />
       </div>
       <div className="chat-contact">
-        <h2 className="chat-name">Donia</h2>
+        <h2 className="chat-name">{recipient?.name}</h2>
         <p className="chat-contact-type">
           online
         </p>
