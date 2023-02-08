@@ -97,9 +97,7 @@ const Sidebar = () => {
         </div>
       </header>
       <div>
-         
-          <StartConversation setShowStartMessage="true" />
-   
+        <StartConversation setShowStartMessage="true" />
       </div>
       <Contacts>
         {loading ? (

@@ -52,8 +52,6 @@ const StartConversation = ({ setShowStartMessage }) => {
                     />
                     <button
                         type="submit"
-                        disabled={email === ""}
-
                     >
                         <VscSearch className="VscSearch" />
                     </button>

@@ -1,14 +1,25 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Context/authProvider";
 
-export function PrivateRoute({ component: Component, ...rest }) {
-    const navigate = useNavigate()
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import Spinner from "./Spinner";
+import { useAuth } from "../Context/authProvider";
+import { useData } from "../Context/dataProvider";
+
+const PrivateRoute = () => {
     const { user } = useAuth();
-    return user == null ? (
-        //add noThrow and Redirect will do redirect without using componentDidCatch.
-        //Redirect works with componentDidCatch to prevent the tree from rendering and starts over with a new location.
-        <Navigate to="/" replace />
+    const location = useLocation();
+    const { loading } = useData();
+
+    return loading ? (
+        <Spinner />
     ) : (
-        <Component {...rest} />
+        <>
+            {user ? (
+                <Outlet />
+            ) : (
+                <Navigate to="/login" state={{ from: location.pathname }} replace />
+            )}
+        </>
     );
-}
+};
+
+export default PrivateRoute;

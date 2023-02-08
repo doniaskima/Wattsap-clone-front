@@ -6,6 +6,8 @@ import Signup from "./Pages/Signup";
 import Home from "./Pages/Home";
 import { Route, Routes } from "react-router-dom";
 import { DataProvider } from "./Context/dataProvider";
+import Chats from "./Pages/ChatPage";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
 
@@ -16,7 +18,9 @@ function App() {
           <Route path="/" element={<LoaderPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<PrivateRoute />}>
+            <Route path="/home" element={<Home />} />
+          </Route>
           {/* <Route path="/home" element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
         </Route> */}

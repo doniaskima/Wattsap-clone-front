@@ -2,6 +2,7 @@ import Sidebar from "../Components/Home/Sidebar/Sidebar"
 import InitialSectionCover from "../Components/MessagesPageComponents/InitialSectionCover"
 import styled from "styled-components";
 import Chats from "./ChatPage";
+import { useLocation, Outlet } from "react-router-dom";
 
 
 const Home = () => {
