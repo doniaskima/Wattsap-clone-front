@@ -92,7 +92,7 @@ const Chats = () => {
                     />
                     <div className="chat-messages">
                         {messagesLoading ? (
-                            <div className="flex justify-center mt-4">
+                            <div className="spinner">
                                 <Spinner />
                             </div>
                         ) : (
@@ -109,8 +109,8 @@ const Chats = () => {
                                 return (
                                     <div key={msg?.messageId}>
                                         {showDate && (
-                                            <p className="w-full flex justify-center my-3">
-                                                <span className="shadow-lg rounded-full py-1 px-2 font-normal">
+                                            <p className="">
+                                                <span className="">
                                                     {date}
                                                 </span>
                                             </p>
