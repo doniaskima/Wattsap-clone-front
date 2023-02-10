@@ -27,10 +27,11 @@ const Chats = () => {
         fetchSavedMessages,
         messageDeleteHandler,
     } = useData();
+
     const { state: recipient } = useLocation();
     let date;
-    const headerTitle =
-        recipient?.type === "saved" ? "Saved Messages" : recipient.name;
+
+    const headerTitle = recipient?.type === "saved" ? "Saved Messages" : recipient.name;
     const [showMenu, setShowMenu] = useState(false);
     const [showRecipientDetails, setShowRecipientDetails] = useState(false);
     const isGroup = recipient?.groupCode ? true : false;
@@ -98,8 +99,7 @@ const Chats = () => {
                         ) : (
                             messages.map((msg, index) => {
                                 const currentDate = dayjs(msg?.createdAt).format("DD-MM-YYYY");
-                                let showDate =
-                                    index === 0 ? true : date === currentDate ? false : true;
+                                let showDate =  index === 0 ? true : date === currentDate ? false : true;
                                 date =
                                     index === 0
                                         ? currentDate
@@ -109,8 +109,8 @@ const Chats = () => {
                                 return (
                                     <div key={msg?.messageId}>
                                         {showDate && (
-                                            <p className="">
-                                                <span className="">
+                                            <p className="showdata">
+                                                <span className="showdata">
                                                     {date}
                                                 </span>
                                             </p>
