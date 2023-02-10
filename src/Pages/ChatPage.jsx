@@ -11,14 +11,14 @@ import { useSocket } from '../Context/socket';
 import { useLocation } from "react-router-dom";
 import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
 import Spinner from "../Components/Spinner";
-
+import Message from "../Components/MessagesPageComponents/Message";
 
 const Chats = () => {
+
     const { user } = useAuth();
     const socket = useSocket();
     const { pathname } = useLocation();
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
-
     const {
         messagesLoading,
         messages,
@@ -29,12 +29,33 @@ const Chats = () => {
     } = useData();
     const { state: recipient } = useLocation();
     let date;
+    const headerTitle =
+        recipient?.type === "saved" ? "Saved Messages" : recipient.name;
+    const [showMenu, setShowMenu] = useState(false);
+    const [showRecipientDetails, setShowRecipientDetails] = useState(false);
+    const isGroup = recipient?.groupCode ? true : false;
+    const isAdmin = isGroup
+        ? recipient?.admin === user._id
+            ? true
+            : false
+        : true;
 
     useEffect(() => {
         socket.on("message", addMessageCallback);
         socket.on("groupMessage", addMessageCallback);
         socket.on("savedMessage", addMessageCallback);
-    })
+        if (isGroup) {
+            socket.emit("joinGroup", {
+                userInfo: { name: user.name, _id: user._id, email: user.email },
+                group: recipient,
+            });
+        }
+        return () => {
+            socket.off("message", addMessageCallback);
+            socket.off("groupMessage", addMessageCallback);
+            socket.off("savedMessage", addMessageCallback);
+        };
+    }, []);
 
     useEffect(() => {
         const fetch = async () => {
@@ -48,12 +69,14 @@ const Chats = () => {
         };
         fetch();
     }, [recipient]);
+
     const openSidebar = (cb) => {
         // close any open sidebar first
         setShowProfileSidebar(false);
         // call callback fn
         cb(true);
     };
+
     useEffect(() => {
         socket.emit("connectUser", { name: user.name });
     }, []);
@@ -68,6 +91,40 @@ const Chats = () => {
                         openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                     />
                     <div className="chat-messages">
+                        {messagesLoading ? (
+                            <div className="flex justify-center mt-4">
+                                <Spinner />
+                            </div>
+                        ) : (
+                            messages.map((msg, index) => {
+                                const currentDate = dayjs(msg?.createdAt).format("DD-MM-YYYY");
+                                let showDate =
+                                    index === 0 ? true : date === currentDate ? false : true;
+                                date =
+                                    index === 0
+                                        ? currentDate
+                                        : date === currentDate
+                                            ? date
+                                            : currentDate;
+                                return (
+                                    <div key={msg?.messageId}>
+                                        {showDate && (
+                                            <p className="w-full flex justify-center my-3">
+                                                <span className="shadow-lg rounded-full py-1 px-2 font-normal">
+                                                    {date}
+                                                </span>
+                                            </p>
+                                        )}
+                                        <Message
+                                            msg={msg}
+                                            isAdmin={isAdmin}
+                                            isGroup={isGroup}
+                                            messageDeleteHandler={messageDeleteHandler}
+                                        />
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
                     <footer className="message-footer">
                         <SendMessage recipient={recipient} />
@@ -80,7 +137,6 @@ const Chats = () => {
                 >
                     <Profile />
                 </ChatSidebar>
-
             </div>
         </DataProvider>
     )
