@@ -32,6 +32,7 @@ const SendMessageComponent = ({ recipient, showAttach,
                 message: message,
             });
         }
+        console.log(message)
     };
 
     return (
@@ -61,15 +62,18 @@ const SendMessageComponent = ({ recipient, showAttach,
             </div>
             <form
                 onSubmit={(e) => sendHandler(e)}
+                
             >
                 <input
                     type="text"
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    onChange={(e) => setMessage(e.target.value)
+                    }
                     className="chat-input"
                     placeholder="Type a message"
+                
                 />
-
+             
             </form>
         </div>
     );

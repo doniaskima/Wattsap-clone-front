@@ -99,7 +99,7 @@ const Chats = () => {
                         ) : (
                             messages.map((msg, index) => {
                                 const currentDate = dayjs(msg?.createdAt).format("DD-MM-YYYY");
-                                let showDate =  index === 0 ? true : date === currentDate ? false : true;
+                                let showDate = index === 0 ? true : date === currentDate ? false : true;
                                 date =
                                     index === 0
                                         ? currentDate

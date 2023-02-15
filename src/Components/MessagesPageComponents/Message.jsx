@@ -32,19 +32,18 @@ const Message = ({ msg, isAdmin, isGroup, messageDeleteHandler }) => {
             onClick={() => messageDeleteHandler(msg)}
           />
         )}
-        ({
+        {/* ({
           isGroup && (
             <p className="">
               {!isMessageSentByClient && msg?.sender?.name}
             </p>
           )
-        })
+        }) */}
         <div className="decrypted-message">
           <span className="decrMessage">{decryptedMessage}</span>
           <span className="time-style">{time}</span>
         </div>
       </div>
-
     </div>
   )
 }

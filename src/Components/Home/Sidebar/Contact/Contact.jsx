@@ -21,7 +21,7 @@ const Contact = ({ recipient }) => {
             </div>
             <div className="sidebar-contact-content">
                 <div className="top-content">
-                    <h2 className="contact-name">Donia </h2>
+                    <h2 className="contact-name">{recipient.name} </h2>
                     <span className="contact-time">
                         9:20 PM
                     </span>
