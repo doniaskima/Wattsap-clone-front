@@ -18,7 +18,7 @@
     .message_is_send {
         background-color: rgb(5, 97, 98);
         color: white;
-        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
         margin-left: auto;
     }
     .message_is_not_byclient {
@@ -32,10 +32,10 @@
         bottom: 0px;
     }
     .left {
-        left: -1rem;
+        left: -1.75rem;
     }
     .right {
-        right: -1rem/* -28px */
+        right: -1.75rem/* -28px */
         ;
     }
     .decrypted-message {

@@ -1,47 +1,48 @@
 .chats {
+  display: flex;
+  position: relative;
+  overflow-y: auto;
+  .chats-body {
+    min-width: 300px;
+    flex: 40%;
+    border-right-color: #3c4247;
     display: flex;
+    flex-direction: column;
     position: relative;
-    overflow-y: auto;
-    .chats-body {
-        min-width: 300px;
-        flex: 40%;
-        border-right-color: #3c4247;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-        .chats-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            opacity: 0.05;
-            z-index: 1;
-            background: url(../../assets//bg-chat-dark.png);
-        }
+    z-index: 1;
+    .chats-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0.05;
+      z-index: 1;
+      background: url(../../assets//bg-chat-dark.png);
     }
+  }
 }
 
 .chat-messages {
-    flex: 1;
-    position: relative;
-    background: $greenWattsap;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 10px 5% 2pc;
-    overflow-y: auto;
+  flex: 1;
+  position: relative;
+  background: $greenWattsap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 10px 5% 2pc;
+  overflow-y: auto;
 }
 
 .error {
-    color: red;
-    text-align: center;
-    margin-top: 20px;
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .showdata {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(52, 43, 43);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(52, 43, 43);
+  margin-top: 10px;
 }
