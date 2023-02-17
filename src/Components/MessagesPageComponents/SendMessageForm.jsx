@@ -3,6 +3,8 @@ import { useAuth } from "../../Context/authProvider";
 import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
 import { GrFormAttachment } from "react-icons/gr";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 
 const SendMessageComponent = ({ recipient, showAttach,
     setShowAttach,
@@ -10,9 +12,10 @@ const SendMessageComponent = ({ recipient, showAttach,
     setShowEmojis,
     newMessage,
     setNewMessage,
-    }) => {
+}) => {
     const { user } = useAuth();
     const [message, setMessage] = useState("");
+    const [currentEmoi, setCurrentEmoji] = useState(null);
     const socket = useSocket();
     const sendHandler = async (e) => {
         e.preventDefault();
@@ -50,6 +53,7 @@ const SendMessageComponent = ({ recipient, showAttach,
                         }`}
                 />
             </button>
+
             <div className="">
                 <button aria-label="Attach" onClick={() => setShowAttach(!showAttach)}>
                     <Icon

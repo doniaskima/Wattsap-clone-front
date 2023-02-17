@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../LoaderPage/index";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 
 
 const emojiTabs = [
@@ -18,63 +20,18 @@ const EmojiTray = ({ showEmojis, newMessage, setNewMessage }) => {
   const addEmoji = (emoji) => {
     setNewMessage(newMessage + emoji);
   };
-
+  const [currentEmoji, setCurrentEmoji] = useState(null);
   return (
     <div
       className={`emojis__wrapper ${showEmojis ? "emojis__wrapper--active" : ""
         }`}
     >
-      <div className="emojis__tabs">
-        {emojiTabs.map((tab) => (
-          <div
-            className={`emojis__tab ${tab.active ? "emojis__tab--active" : ""}`}
-            key={tab.label}
-          >
-            <button aria-label={tab.label} key={tab.icon}>
-              <Icon id={tab.icon} className="emojis__tab-icon" />
-            </button>
-          </div>
-        ))}
-      </div>
-      <div className="emojis__content">
-        <input className="emojis__search" placeholder="Search Emoji" />
-        <h4 className="emojis__label"> Smileys {"&"} People </h4>
-        <div className="emojis__grid">
-          {new Array(6).fill(null).map((_, rowIndex) =>
-            new Array(11).fill(null).map((_, colIndex) => (
-              <div
-                role="img"
-                aria-label="emoji"
-                // onClick={() => addEmoji("emoji")}
-                key={`${rowIndex}-${colIndex}`}
-                className="emoji emojis__emoji"
-                style={{
-                  backgroundPositionX: -3 - 44.2 * colIndex,
-                  backgroundPositionY: -6 - 52 * rowIndex,
-                }}
-              ></div>
-            ))
-          )}
-        </div>
-        <h4 className="emojis__label"> Animals {"&"} Nature </h4>
-        <div className="emojis__grid">
-          {new Array(6).fill(null).map((_, rowIndex) =>
-            new Array(11).fill(null).map((_, colIndex) => (
-              <div
-                role="img"
-                aria-label="emoji"
-                // onClick={() => addEmoji("emoji")}
-                key={`${rowIndex}-${colIndex}`}
-                className="emoji emojis__emoji"
-                style={{
-                  backgroundPositionX: -3 - 44.2 * colIndex,
-                  backgroundPositionY: -6 - 52 * rowIndex,
-                }}
-              ></div>
-            ))
-          )}
-        </div>
-      </div>
+      <Picker data={data} previewPosition="none" onEmojiSelect={(e) => {
+        addEmoji(e.native);
+        setShowEmojis(!showEmojis);
+   
+      }} />
+
     </div>
   );
 };
