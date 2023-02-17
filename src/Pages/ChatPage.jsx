@@ -144,9 +144,6 @@ const Chats = () => {
                         >
                             <Icon id="downArrow" />
                         </button>
-
-
-
                         <SendMessage
                             recipient={recipient}
                             showEmojis={showEmojis}
