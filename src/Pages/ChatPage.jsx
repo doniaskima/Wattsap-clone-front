@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import Header from "../Components/MessagesPageComponents/Header";
 import ChatSidebar from '../Components/MessagesPageComponents/ChatSidebar';
@@ -15,7 +15,9 @@ import Message from "../Components/MessagesPageComponents/Message";
 import Icon from "../Components/LoaderPage/Icon"
 
 const Chats = () => {
+    const lastMsgRef = useRef(null);
     const [newMessage, setNewMessage] = useState("");
+    const [showEmojis, setShowEmojis] = useState(false);
     const { user } = useAuth();
     const socket = useSocket();
     const { pathname } = useLocation();
@@ -141,8 +143,20 @@ const Chats = () => {
                         >
                             <Icon id="downArrow" />
                         </button>
+                        <EmojiTray
+                            showEmojis={showEmojis}
+                            newMessage={newMessage}
+                            setNewMessage={setNewMessage}
+                        />
 
-                        <SendMessage recipient={recipient} />
+                        <SendMessage
+                            recipient={recipient}
+                            showEmojis={showEmojis}
+                            setShowEmojis={setShowEmojis}
+                            newMessage={newMessage}
+                            setNewMessage={setNewMessage}
+                        />
+
                     </footer>
                 </div>
                 <ChatSidebar

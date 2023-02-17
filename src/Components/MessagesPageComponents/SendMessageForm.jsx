@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAuth } from "../../Context/authProvider";
 import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
-import EmojiTab from "../MessagesPageComponents/EmojisComponent";
 import { GrFormAttachment } from "react-icons/gr";
 
 const SendMessageComponent = ({ recipient, showAttach,
@@ -11,7 +10,7 @@ const SendMessageComponent = ({ recipient, showAttach,
     setShowEmojis,
     newMessage,
     setNewMessage,
-    submitNewMessage, }) => {
+    }) => {
     const { user } = useAuth();
     const [message, setMessage] = useState("");
     const socket = useSocket();
@@ -62,7 +61,7 @@ const SendMessageComponent = ({ recipient, showAttach,
             </div>
             <form
                 onSubmit={(e) => sendHandler(e)}
-                
+
             >
                 <input
                     type="text"
@@ -71,9 +70,9 @@ const SendMessageComponent = ({ recipient, showAttach,
                     }
                     className="chat-input"
                     placeholder="Type a message"
-                
+
                 />
-             
+
             </form>
         </div>
     );
