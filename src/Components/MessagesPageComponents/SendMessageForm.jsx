@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../Context/authProvider";
 import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
-
+ 
 
 const SendMessageComponent = ({ recipient, showAttach,
     setShowAttach,
@@ -13,7 +13,6 @@ const SendMessageComponent = ({ recipient, showAttach,
 }) => {
     const { user } = useAuth();
     const [message, setMessage] = useState("");
-    const [currentEmoi, setCurrentEmoji] = useState(null);
     const socket = useSocket();
     const sendHandler = async (e) => {
         e.preventDefault();
@@ -61,21 +60,7 @@ const SendMessageComponent = ({ recipient, showAttach,
                     />
                 </button>
             </div>
-            <form
-                onSubmit={(e) => sendHandler(e)}
-
-            >
-                <input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)
-                    }
-                    className="chat-input"
-                    placeholder="Type a message"
-
-                />
-
-            </form>
+ 
         </div>
     );
 };

@@ -9,17 +9,23 @@ import { useAuth } from '../Context/authProvider';
 import { useData } from '../Context/dataProvider';
 import { useSocket } from '../Context/socket';
 import { useLocation } from "react-router-dom";
-import EmojiTray from "../Components/MessagesPageComponents/EmojisComponent";
 import Spinner from "../Components/Spinner";
 import Message from "../Components/MessagesPageComponents/Message";
-import Icon from "../Components/LoaderPage/Icon"
+import Icon from "../Components/LoaderPage/Icon";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 
 
 const Chats = () => {
     const lastMsgRef = useRef(null);
     const [newMessage, setNewMessage] = useState("");
     const [showEmojis, setShowEmojis] = useState(false);
+    const [message, setMessage] = useState("");
     const { user } = useAuth();
+    const addEmoji = (emoji) => {
+        setNewMessage(newMessage + emoji);
+    };
+    const [currentEmoji, setCurrentEmoji] = useState(null);
     const socket = useSocket();
     const { pathname } = useLocation();
     const [showProfileSidebar, setShowProfileSidebar] = useState(false);
@@ -91,6 +97,27 @@ const Chats = () => {
     };
 
 
+    const sendHandler = async (e) => {
+        e.preventDefault();
+        setMessage("");
+        if (recipient?.type === "saved") {
+            socket.emit("saveMessage", {
+                user: user,
+                message: message,
+            });
+            return;
+        }
+        else {
+            socket.emit("sendMessage", {
+                sender: user,
+                receiver: recipient,
+                message: message,
+            });
+        }
+        console.log(message)
+    };
+
+
     return (
         <DataProvider>
             <div className="chats">
@@ -144,20 +171,45 @@ const Chats = () => {
                         >
                             <Icon id="downArrow" />
                         </button>
-                        <SendMessage
-                            recipient={recipient}
-                            showEmojis={showEmojis}
-                            setShowEmojis={setShowEmojis}
-                            newMessage={newMessage}
-                            setNewMessage={setNewMessage}
-                        />
+                        <div className="flex">
+                            <div>
+                                <SendMessage
+                                    recipient={recipient}
+                                    showEmojis={showEmojis}
+                                    setShowEmojis={setShowEmojis}
+                                    newMessage={newMessage}
+                                    setNewMessage={setNewMessage}
+                                />
+                            </div>
 
+                            <form
+                                onSubmit={(e) => sendHandler(e)}
+
+                            >
+                                <input
+                                    type="text"
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)
+                                    }
+                                    className="chat-input"
+                                    placeholder="Type a message"
+
+                                />
+
+                            </form>
+                        </div>
                     </footer>
-                    <EmojiTray
-                        showEmojis={showEmojis}
-                        newMessage={newMessage}
-                        setNewMessage={setNewMessage}
-                    />
+                    <div
+                        className={`emojis__wrapper ${showEmojis ? "emojis__wrapper--active" : ""
+                            }`}
+                    >
+                        <Picker data={data} previewPosition="none" onEmojiSelect={(e) => {
+                            setCurrentEmoji(e.native);
+                            setMessage(message + e.native);
+                            console.log(currentEmoji);
+
+                        }} />
+                    </div>
                 </div>
                 <ChatSidebar
                     heading="Contact Info"
