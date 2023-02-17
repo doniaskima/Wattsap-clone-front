@@ -87,13 +87,12 @@ const Chats = () => {
         // call callback fn
         cb(true);
     };
-
     useEffect(() => {
         socket.emit("connectUser", { name: user.name });
     }, []);
 
     const scrollToLastMsg = () => {
-        lastMsgRef.current.scrollIntoView();
+        lastMsgRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
 
@@ -113,11 +112,11 @@ const Chats = () => {
                 receiver: recipient,
                 message: message,
             });
+         
         }
         console.log(message)
+        scrollToLastMsg();
     };
-
-
     return (
         <DataProvider>
             <div className="chats">

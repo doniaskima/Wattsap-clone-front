@@ -4,7 +4,7 @@ import avatar from "../../../../assets/avatar.jpeg"
 import { useSocket } from '../../../../Context/socket';
 import { useData } from "../../../../Context/dataProvider";
 
-const Contact = ({ recipient }) => {
+const Contact = ({ recipient, lastMessage }) => {
     const { recipients } = useData();
     const socket = useSocket();
     return (
