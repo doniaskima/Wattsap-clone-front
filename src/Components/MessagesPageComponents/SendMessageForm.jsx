@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../Context/authProvider";
 import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
-import { GrFormAttachment } from "react-icons/gr";
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
+
 
 const SendMessageComponent = ({ recipient, showAttach,
     setShowAttach,
