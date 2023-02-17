@@ -13,7 +13,7 @@ import EmojiTray from "../Components/MessagesPageComponents/EmojisComponent";
 import Spinner from "../Components/Spinner";
 import Message from "../Components/MessagesPageComponents/Message";
 import Icon from "../Components/LoaderPage/Icon"
- 
+
 
 const Chats = () => {
     const lastMsgRef = useRef(null);
@@ -89,7 +89,7 @@ const Chats = () => {
     const scrollToLastMsg = () => {
         lastMsgRef.current.scrollIntoView();
     };
- 
+
 
     return (
         <DataProvider>
@@ -144,12 +144,8 @@ const Chats = () => {
                         >
                             <Icon id="downArrow" />
                         </button>
-                        <EmojiTray
-                            showEmojis={showEmojis}
-                            newMessage={newMessage}
-                            setNewMessage={setNewMessage}
-                        />
-                      
+
+
 
                         <SendMessage
                             recipient={recipient}
@@ -160,6 +156,11 @@ const Chats = () => {
                         />
 
                     </footer>
+                    <EmojiTray
+                        showEmojis={showEmojis}
+                        newMessage={newMessage}
+                        setNewMessage={setNewMessage}
+                    />
                 </div>
                 <ChatSidebar
                     heading="Contact Info"
