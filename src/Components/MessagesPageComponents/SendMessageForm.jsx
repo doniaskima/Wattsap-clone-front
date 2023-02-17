@@ -44,7 +44,7 @@ const SendMessageComponent = ({ recipient, showAttach,
                     </button>
                 )
             }
-            <button aria-label="Emojis" onClick={() => setEmojis(true)}>
+            <button aria-label="Emojis" onClick={() => setShowEmojis(true)}>
                 <Icon
                     id="smiley"
                     className={`send-message-icon ${showEmojis ? "send-message-icon-highlight" : ""

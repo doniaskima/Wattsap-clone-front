@@ -9,12 +9,13 @@ import { useAuth } from '../Context/authProvider';
 import { useData } from '../Context/dataProvider';
 import { useSocket } from '../Context/socket';
 import { useLocation } from "react-router-dom";
-import EmojiTab from "../Components/MessagesPageComponents/EmojisComponent";
+import EmojiTray from "../Components/MessagesPageComponents/EmojisComponent";
 import Spinner from "../Components/Spinner";
 import Message from "../Components/MessagesPageComponents/Message";
+import Icon from "../Components/LoaderPage/Icon"
 
 const Chats = () => {
-
+    const [newMessage, setNewMessage] = useState("");
     const { user } = useAuth();
     const socket = useSocket();
     const { pathname } = useLocation();
@@ -82,6 +83,11 @@ const Chats = () => {
         socket.emit("connectUser", { name: user.name });
     }, []);
 
+    const scrollToLastMsg = () => {
+        lastMsgRef.current.scrollIntoView();
+    };
+
+
     return (
         <DataProvider>
             <div className="chats">
@@ -91,6 +97,7 @@ const Chats = () => {
                         recipient={recipient}
                         openProfileSidebar={() => openSidebar(setShowProfileSidebar)}
                     />
+
                     <div className="chat-messages">
                         {messagesLoading ? (
                             <div className="spinner">
@@ -127,6 +134,14 @@ const Chats = () => {
                         )}
                     </div>
                     <footer className="message-footer">
+                        <button
+                            className="chat__scroll-btn"
+                            aria-label="scroll down"
+                            onClick={scrollToLastMsg}
+                        >
+                            <Icon id="downArrow" />
+                        </button>
+
                         <SendMessage recipient={recipient} />
                     </footer>
                 </div>
