@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { keyframes, ThemeProvider } from 'styled-components'
 import LogoComponent from '../Components/subComponents/LogoComponent';
 import BigTitle from '../Components/subComponents/BigTitle';
@@ -6,7 +6,8 @@ import { DarkTheme } from '../Components/Themes';
 import ParticleComponent from '../Components/subComponents/ParticleComponent';
 import WatsApp from "../assets/Whatsapp.png"
 import phone from "../assets/phone.png"
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from "../Context/authProvider";
 
 
 const float = keyframes`
@@ -56,6 +57,29 @@ const Main = styled.div`
 `
 
 const Login = () => {
+    const { loginWithUserCredentials, emailValidate } = useAuth();
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const loginHandler = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        if (emailValidate(email)) {
+            const { user, message } = await loginWithUserCredentials(email, password);
+            if (user == null) {
+                setError(message);
+                setLoading(false);
+                return;
+            }
+            navigate("/home");
+            return;
+        }
+        setError("Enter Valid Email");
+        setLoading(false);
+    };
     return (
         <ThemeProvider theme={DarkTheme}>
             <Box>
@@ -66,10 +90,13 @@ const Login = () => {
                     <img src={WatsApp} alt="WatsApp" />
                 </WattsApp>
                 <Main>
-                    <form action="">
+                    <form onSubmit={(event) => loginHandler(event)} >
                         <FormTitle>
                             Join Wattsap Today
                         </FormTitle>
+                        {error !== "" &&
+                            <p className="error-style">{error}</p>
+                        }
                         <InputContainer>
                             <InputLabel
                                 htmlFor="email">
@@ -79,6 +106,8 @@ const Login = () => {
                                 id="email"
                                 type="email"
                                 placeholder="Your Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </InputContainer>
                         <InputContainer>
@@ -91,6 +120,8 @@ const Login = () => {
                                 id="password"
                                 type="password"
                                 placeholder="Your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
 
                             />
                         </InputContainer>
@@ -99,10 +130,16 @@ const Login = () => {
                                 type="submit"
                                 className="style-btn-auth"
                             >
-                                Login
+                                {loading ? "logging Up..." : "login"}
                             </button>
                         </div>
+                        <div className="center">
+                            <p className="dont_have_account">
+                                Dont have an account?{" "}<Link className="to_signup_page" to="/signup">Sign Up!</Link>
+                            </p>
+                        </div>
                     </form>
+
                 </Main>
 
                 <BigTitle text="Login" top="15%" left="2%" right="65%" />
@@ -128,6 +165,7 @@ export const InputContainer = styled.div`
 export const InputLabel = styled.label`
   color: #adafb3;
   font-size: 16px;
+  margin-top:10px;
 `
 export const InputField = styled.input`
   background: #202225;
