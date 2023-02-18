@@ -1,10 +1,61 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import Logo from "../assets/Whatsapp-logo.png";
+import styled, { keyframes, ThemeProvider } from "styled-components";
+import LogoComponent from "../Components/subComponents/LogoComponent";
+import BigTitle from "../Components/subComponents/BigTitle";
+import { DarkTheme } from "../Components/Themes";
+import ParticleComponent from "../Components/subComponents/ParticleComponent";
+import WatsApp from "../assets/Whatsapp.png";
+import phone from "../assets/phone.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/authProvider";
 
-const Signup = () => {
+const float = keyframes`
+0% { transform: translateY(-10px) }
+50% { transform: translateY(15px) translateX(15px) }
+100% { transform: translateY(-10px) }
+`;
+
+const WattsApp = styled.div`
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 20vw;
+  animation: ${float} 4s ease infinite;
+  img {
+    width: 100%;
+    height: auto;
+  }
+`;
+const Box = styled.div`
+  background-color: ${(props) => props.theme.body};
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+`;
+
+const Main = styled.div`
+  border: 2px solid ${(props) => props.theme.text};
+  color: ${(props) => props.theme.text};
+  padding: 2rem;
+  width: 50vw;
+  height: 60vh;
+  z-index: 3;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(0.6rem + 1vw);
+  backdrop-filter: blur(4px);
+
+  position: absolute;
+  left: calc(5rem + 5vw);
+  top: 10rem;
+  font-family: "Ubuntu Mono", monospace;
+  font-style: italic;
+`;
+
+const Login = () => {
     const { signupWithUserCredentials, emailValidate } = useAuth();
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -50,86 +101,83 @@ const Signup = () => {
     };
 
     return (
-        <div className="form-container-signup">
-            <div className="logo-wattsap">
-                <img src={Logo} alt="wattsap-logo" className="wattsap-logo" />
-            </div>
-            <form onSubmit={(event) => signupHandler(event)} className="form-style">
-                <FormTitle>Join Wattsap Today</FormTitle>
-                {error !== "" && <p className="error-style">{error}</p>}
-                <InputContainer>
-                    <InputLabel htmlFor="email">Email</InputLabel>
-                    <InputField
-                        id="email"
-                        type="email"
-                        placeholder="Your Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel htmlFor="text">name</InputLabel>
-                    <InputField
-                        id="name"
-                        type="name"
-                        placeholder="Your name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel htmlFor="password">Password</InputLabel>
-                    <InputField
-                        id="password"
-                        type="password"
-                        placeholder="Your password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <InputLabel htmlFor="password">ConfirmPassword</InputLabel>
-                    <InputField
-                        id="password"
-                        type="password"
-                        placeholder="Your password"
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </InputContainer>
+        <ThemeProvider theme={DarkTheme}>
+            <Box>
+                <LogoComponent theme="dark" />
+                <ParticleComponent theme="dark" />
 
-                <div className="btn-auth">
-                    <button
-                        type="submit"
-                        className="style-btn-auth"
-                        disabled={isEmptyFields}
-                    >
-                        {loading ? "Signing Up..." : "Sign up"}
-                    </button>
-                </div>
-            </form>
-        </div>
+                <WattsApp>
+                    <img src={phone} alt="phone" />
+                </WattsApp>
+                <Main>
+                    <form onSubmit={(event) => signupHandler(event)}>
+
+                        {error !== "" && <p className="error-style">{error}</p>}
+                        <Flex>
+                            <InputContainer>
+                                <InputLabel htmlFor="email">Email</InputLabel>
+                                <InputField
+                                    id="email"
+                                    type="email"
+                                    placeholder="Your Email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </InputContainer>
+                            <InputContainer>
+                                <InputLabel htmlFor="text">name</InputLabel>
+                                <InputField
+                                    id="name"
+                                    type="name"
+                                    placeholder="Your name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </InputContainer>
+                        </Flex>
+                        <Flex>
+                            <InputContainer>
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <InputField
+                                    id="password"
+                                    type="password"
+                                    placeholder="Your password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </InputContainer>
+                            <InputContainer>
+                                <InputLabel htmlFor="password">ConfirmPassword</InputLabel>
+                                <InputField
+                                    id="password"
+                                    type="password"
+                                    placeholder="Your password"
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </InputContainer>
+                        </Flex>
+
+                        <div className="btn-auth">
+                            <button type="submit" className="style-btn-auth">
+                                {loading ? "Signing Up..." : "Sign up"}
+                            </button>
+                        </div>
+ 
+                    </form>
+                </Main>
+
+                <BigTitle text="Signup" top="75%" left="72%" right="65%" />
+            </Box>
+        </ThemeProvider>
     );
 };
 
-export const InputField = styled.input`
-  background: #202225;
-  outline: none;
-  border: none;
+export const FormTitle = styled.h2`
   color: #fff;
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 8px;
-`;
-export const TextAreaField = styled.textarea`
-  background: #202225;
-  outline: none;
-  border: none;
-  color: #fff;
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 8px;
-  width: 100%;
-  height: 150px;
-  resize: none;
+  font-family: "Syne Mono", monospace;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 export const InputContainer = styled.div`
   color: #fff;
@@ -140,14 +188,20 @@ export const InputContainer = styled.div`
 export const InputLabel = styled.label`
   color: #adafb3;
   font-size: 16px;
+  margin-top: 10px;
 `;
-export const FormTitle = styled.h2`
+export const InputField = styled.input`
+  background: #202225;
+  outline: none;
+  border: none;
   color: #fff;
-  font-family: "Syne Mono", monospace;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 12px;
 `;
+export const Flex = styled.div`
+display:flex;
+gap:20px;
+`
 
-export default Signup;
+export default Login;
