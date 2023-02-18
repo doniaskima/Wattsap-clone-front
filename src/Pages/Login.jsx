@@ -18,7 +18,7 @@ const Login = () => {
         <ThemeProvider theme={DarkTheme}>
             <Box>
                 <LogoComponent theme='dark' />
-             
+                <ParticleComponent theme='dark' />
             </Box>
         </ThemeProvider>
     )
