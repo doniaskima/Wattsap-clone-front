@@ -30,7 +30,8 @@
     "react-tsparticles": "^2.9.3",
     "sass": "^1.57.1",
     "socket.io-client": "^4.5.4",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "tsparticles": "^2.9.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
