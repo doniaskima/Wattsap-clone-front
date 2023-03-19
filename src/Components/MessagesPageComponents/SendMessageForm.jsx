@@ -12,8 +12,8 @@ const attachButtons = [
 ];
 
 
-const SendMessageComponent = ({ recipient, showAttach,
-    setShowAttach,
+const SendMessageComponent = ({ recipient, 
+    
     showEmojis,
     setShowEmojis,
     newMessage,
@@ -21,6 +21,7 @@ const SendMessageComponent = ({ recipient, showAttach,
 }) => {
     const { user } = useAuth();
     const [message, setMessage] = useState("");
+    const [showAttach, setShowAttach] = useState(false);
     const socket = useSocket();
     const sendHandler = async (e) => {
         e.preventDefault();
@@ -51,15 +52,7 @@ const SendMessageComponent = ({ recipient, showAttach,
                     </button>
                 )
             }
-            <button aria-label="Emojis" onClick={() => setShowEmojis(true)}>
-                <Icon
-                    id="smiley"
-                    className={`send-message-icon ${showEmojis ? "send-message-icon-highlight" : ""
-                        }`}
-                />
-            </button>
-
-            <div className="">
+                 <div className="">
                 <button aria-label="Attach" onClick={() => setShowAttach(!showAttach)}>
                     <Icon
                         id="attach"
@@ -68,6 +61,15 @@ const SendMessageComponent = ({ recipient, showAttach,
                     />
                 </button>
             </div>
+            <button aria-label="Emojis" onClick={() => setShowEmojis(true)}>
+                <Icon
+                    id="smiley"
+                    className={`send-message-icon ${showEmojis ? "send-message-icon-highlight" : ""
+                        }`}
+                />
+            </button>
+
+        
             
 				<div
 					className={`chat__attach ${showAttach ? "chat__attach--active" : ""}`}
