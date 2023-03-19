@@ -3,6 +3,14 @@ import { useAuth } from "../../Context/authProvider";
 import { useSocket } from "../../Context/socket";
 import Icon from "../LoaderPage/Icon";
  
+const attachButtons = [
+	{ icon: "attachRooms", label: "Choose room" },
+	{ icon: "attachContacts", label: "Choose contact" },
+	{ icon: "attachDocument", label: "Choose document" },
+	{ icon: "attachCamera", label: "Use camera" },
+	{ icon: "attachImage", label: "Choose image" },
+];
+
 
 const SendMessageComponent = ({ recipient, showAttach,
     setShowAttach,
@@ -60,6 +68,20 @@ const SendMessageComponent = ({ recipient, showAttach,
                     />
                 </button>
             </div>
+            
+				<div
+					className={`chat__attach ${showAttach ? "chat__attach--active" : ""}`}
+				>
+					{attachButtons.map((btn) => (
+						<button
+							className="chat__attach-btn"
+							aria-label={btn.label}
+							key={btn.label}
+						>
+							<Icon id={btn.icon} className="chat__attach-icon" />
+						</button>
+					))}
+				</div>
  
         </div>
     );
